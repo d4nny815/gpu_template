@@ -1,15 +1,18 @@
 from PIL import Image 
 
 # RUN from root directory: python3 programs/make_mem_file.py
-BITS = 0xFFF
+num_data_bits = 12       # number of bits for data
+data_BITS = 2 ** num_data_bits - 1
+
+num_addr_bits = 15
 
 def main():
-    mem = get_mem(15, len(bin(BITS)[2:]))
+    mem = get_mem(num_addr_bits, len(bin(data_BITS)[2:]))
     image_name = 'initialD.jpg'
     load_img_to_mem(mem, './programs/' + image_name)
 
     for data in mem:
-        if data > BITS:
+        if data > data_BITS:
             print('data greater than 8 bits', data)
             return
 
@@ -28,7 +31,7 @@ def load_img_to_mem(mem: list, infile_name: str) -> None:
         for h in range(input_image.width):
             pixel_data = RGB_to_12b(pixels[h, v])
             addr = v * 200 + h
-            mem[addr] = pixel_data & BITS
+            mem[addr] = pixel_data & data_BITS
     return
 
 def RGB_to_12b(pixel):
