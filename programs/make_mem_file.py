@@ -5,7 +5,8 @@ BITS = 0xFFF
 
 def main():
     mem = get_mem(15, len(bin(BITS)[2:]))
-    load_img_to_mem(mem, './programs/turd.png')
+    image_name = 'initialD.jpg'
+    load_img_to_mem(mem, './programs/' + image_name)
 
     for data in mem:
         if data > BITS:
@@ -21,6 +22,7 @@ def get_mem(addr_bits: int, data_bits) -> list:
 
 def load_img_to_mem(mem: list, infile_name: str) -> None:
     input_image = Image.open(infile_name)
+    input_image = input_image.resize((200, 150))
     pixels = input_image.load()
     for v in range(input_image.height):
         for h in range(input_image.width):

@@ -39,9 +39,9 @@ module GPU(
     input clk,              // 50MHz
     input vram_we_i,
     input vram_re_i,
-    input [7:0] vram_data_i,   // TODO: plan to convert this to 12b
+    input [7:0] vram_data_i,
     input [15:0] vram_addr_i,  // top byte is v, bottom byte is h
-    output [7:0] vram_data_o,
+    output [7:0] vram_data_o, 
     output hsync_o,          
     output vsync_o, 
     output [3:0] vgaRed_o, 
