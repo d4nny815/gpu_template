@@ -5,7 +5,7 @@ BITS = 0xFFF
 
 def main():
     mem = get_mem(15, len(bin(BITS)[2:]))
-    load_img_to_mem(mem, './programs/parrot.png')
+    load_img_to_mem(mem, './programs/turd.png')
 
     for data in mem:
         if data > BITS:
